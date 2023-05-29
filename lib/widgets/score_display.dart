@@ -1,4 +1,4 @@
-import 'package:dart_cricket_score/player.dart';
+import 'package:dart_cricket_score/models/player.dart';
 import 'package:flutter/cupertino.dart';
 import 'game_view.dart';
 

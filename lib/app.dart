@@ -1,4 +1,4 @@
-import 'package:dart_cricket_score/start_screen.dart';
+import 'package:dart_cricket_score/widgets/start_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 

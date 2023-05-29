@@ -1,6 +1,6 @@
-import 'package:dart_cricket_score/multipliers.dart';
-import 'package:dart_cricket_score/player.dart';
-import 'package:dart_cricket_score/score_display.dart';
+import 'package:dart_cricket_score/widgets/multipliers.dart';
+import 'package:dart_cricket_score/models/player.dart';
+import 'package:dart_cricket_score/widgets/score_display.dart';
 import 'package:flutter/cupertino.dart';
 import 'slide_button.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;

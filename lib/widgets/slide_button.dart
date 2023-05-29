@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:dart_cricket_score/player.dart';
+import 'package:dart_cricket_score/models/player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
