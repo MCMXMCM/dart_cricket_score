@@ -1,14 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'game_view.dart';
-// import 'tab_bar.dart';
 
-class ScreenArguments {
-  final List<String> staticPlayers;
-
-  ScreenArguments(this.staticPlayers);
-}
-
-/// Displays detailed information about a SampleItem.
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});
   static const routeName = '/';

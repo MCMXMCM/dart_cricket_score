@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:dart_cricket_score/player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/services.dart';
 class SlideButton extends StatefulWidget {
   final int item;
   final Function callback;
-  final Map<String, Map<String, dynamic>> playerMap;
+  final Map<String, Player> playerMap;
   final String currentP;
   final int playerNumber;
 
@@ -30,7 +31,7 @@ class _SlideButtonState extends State<SlideButton> {
   void _getUnlocked() {
     var output;
     widget.playerMap.forEach((key, value) {
-      blocked[key] = value['unlocked'];
+      blocked[key] = value.unlocked;
     });
   }
 
@@ -112,7 +113,7 @@ class _SlideButtonState extends State<SlideButton> {
                         ? MediaQuery.of(context).size.height / 30
                         : MediaQuery.of(context).size.height / 60,
                     decoration: BoxDecoration(
-                      color: widget.playerMap['p1']!['color'],
+                      color: widget.playerMap['p1']!.color,
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(4.0),
                           topLeft: Radius.circular(4.0)),
@@ -129,7 +130,7 @@ class _SlideButtonState extends State<SlideButton> {
                         ? MediaQuery.of(context).size.height / 30
                         : MediaQuery.of(context).size.height / 60,
                     decoration: BoxDecoration(
-                      color: widget.playerMap['p2']!['color'],
+                      color: widget.playerMap['p2']!.color,
                       borderRadius: widget.playerNumber == 2
                           ? const BorderRadius.only(
                               bottomRight: Radius.circular(4.0),
@@ -151,7 +152,7 @@ class _SlideButtonState extends State<SlideButton> {
                         ? 0
                         : MediaQuery.of(context).size.height / 60,
                     decoration: BoxDecoration(
-                      color: widget.playerMap['p3']!['color'],
+                      color: widget.playerMap['p3']!.color,
                     ),
                     // Define how long the animation should take.
                     duration: const Duration(seconds: 1),
@@ -165,7 +166,7 @@ class _SlideButtonState extends State<SlideButton> {
                         ? 0
                         : MediaQuery.of(context).size.height / 60,
                     decoration: BoxDecoration(
-                      color: widget.playerMap['p4']!['color'],
+                      color: widget.playerMap['p4']!.color,
                       borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(4.0),
                           bottomLeft: Radius.circular(4.0)),
@@ -200,7 +201,7 @@ class _SlideButtonState extends State<SlideButton> {
               icon: isBlocked ? 'blocked!' : 'undone',
               backgroundColor: isBlocked
                   ? CupertinoColors.destructiveRed
-                  : widget.playerMap[widget.currentP]!['color'],
+                  : widget.playerMap[widget.currentP]!.color,
               iconColor: Colors.green,
               alignment: Alignment.centerLeft,
               padding: const EdgeInsetsDirectional.only(start: 20),
@@ -218,7 +219,7 @@ class _SlideButtonState extends State<SlideButton> {
               icon: isBlocked ? 'blocked!' : 'score!',
               backgroundColor: isBlocked
                   ? CupertinoColors.destructiveRed
-                  : widget.playerMap[widget.currentP]!['color'],
+                  : widget.playerMap[widget.currentP]!.color,
               iconColor: Colors.yellow,
               alignment: Alignment.centerRight,
               padding: const EdgeInsetsDirectional.only(end: 20),

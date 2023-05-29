@@ -18,17 +18,3 @@ class CupertinoCricketApp extends StatelessWidget {
     );
   }
 }
-
-class CupertinoStoreHomePage extends StatelessWidget {
-  const CupertinoStoreHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: Text('Cricket Store'),
-      ),
-      child: SizedBox(),
-    );
-  }
-}
