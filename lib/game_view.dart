@@ -216,9 +216,14 @@ class _InGameViewState extends State<InGameView> {
               ),
             );
           },
-          child: const Icon(
-            CupertinoIcons.refresh,
-            color: CupertinoColors.black,
+          child: Container(
+            color: Color.fromARGB(12, 239, 239, 244),
+            height: 50,
+            width: 50,
+            child: const Icon(
+              CupertinoIcons.refresh,
+              color: CupertinoColors.activeBlue,
+            ),
           ),
         ),
         leading: GestureDetector(
@@ -226,7 +231,11 @@ class _InGameViewState extends State<InGameView> {
             Navigator.pop(context);
             debugPrint('Back button tapped');
           },
-          child: const Icon(CupertinoIcons.left_chevron),
+          child: Container(
+              color: Color.fromARGB(12, 239, 239, 244),
+              height: 50,
+              width: 50,
+              child: const Icon(CupertinoIcons.left_chevron)),
         ),
         middle: Text(
           'Round ${round + 1}',
@@ -299,18 +308,31 @@ class _InGameViewState extends State<InGameView> {
                                   ),
                                   FittedBox(
                                     fit: BoxFit.contain,
-                                    child: Text(
-                                      '${playerMap[e]?['score']}',
-                                      style: e == currentP
-                                          ? const TextStyle(
-                                              // color: playerMap[currentP]!['color'],
+                                    child: e == currentP
+                                        ? Text(
+                                            '${playerMap[e]?['score'] + playerScore}',
+                                            style: e == currentP
+                                                ? const TextStyle(
+                                                    // color: playerMap[currentP]!['color'],
 
-                                              fontWeight: FontWeight.bold)
-                                          : const TextStyle(
-                                              fontWeight: FontWeight.bold
-                                              // color: playerMap[e]!['color'],
-                                              ),
-                                    ),
+                                                    fontWeight: FontWeight.bold)
+                                                : const TextStyle(
+                                                    fontWeight: FontWeight.bold
+                                                    // color: playerMap[e]!['color'],
+                                                    ),
+                                          )
+                                        : Text(
+                                            '${playerMap[e]?['score']}',
+                                            style: e == currentP
+                                                ? const TextStyle(
+                                                    // color: playerMap[currentP]!['color'],
+
+                                                    fontWeight: FontWeight.bold)
+                                                : const TextStyle(
+                                                    fontWeight: FontWeight.bold
+                                                    // color: playerMap[e]!['color'],
+                                                    ),
+                                          ),
                                   ),
                                 ],
                               ),
