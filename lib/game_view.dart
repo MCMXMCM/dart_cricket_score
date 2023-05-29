@@ -236,8 +236,10 @@ class _InGameViewState extends State<InGameView> {
       child: SafeArea(
         child: Center(
           child: Container(
-            constraints: kIsWeb ? const BoxConstraints(maxWidth: 375) : null,
-            margin: const EdgeInsets.all(20.0),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            // constraints: kIsWeb ? const BoxConstraints(maxWidth: 375) : null,
+            margin: EdgeInsets.all(MediaQuery.of(context).size.width / 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -264,16 +266,16 @@ class _InGameViewState extends State<InGameView> {
                           transformAlignment: AlignmentDirectional.center,
                           width: widget.playerNumber == 2
                               ? e == currentP
-                                  ? 240
-                                  : 100
+                                  ? MediaQuery.of(context).size.width / 2
+                                  : MediaQuery.of(context).size.width / 4
                               : widget.playerNumber == 3
                                   ? e == currentP
-                                      ? 180
-                                      : 70
+                                      ? MediaQuery.of(context).size.width / 3
+                                      : MediaQuery.of(context).size.width / 4
                                   : e == currentP
-                                      ? 130
-                                      : 50,
-                          height: 55,
+                                      ? MediaQuery.of(context).size.width / 4
+                                      : MediaQuery.of(context).size.width / 6.5,
+                          height: MediaQuery.of(context).size.height / 16,
                           curve: Curves.fastOutSlowIn,
                           duration: const Duration(seconds: 1),
                           child: Row(
@@ -281,96 +283,100 @@ class _InGameViewState extends State<InGameView> {
                             children: [
                               Column(
                                 children: [
-                                  Text(
-                                    e,
-                                    style: e == currentP
-                                        ? TextStyle(
-                                            color:
-                                                playerMap[currentP]!['color'],
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold)
-                                        : TextStyle(
-                                            fontSize: 20,
-                                            color: playerMap[e]!['color'],
-                                            fontWeight: FontWeight.bold),
+                                  FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      e,
+                                      style: e == currentP
+                                          ? TextStyle(
+                                              color:
+                                                  playerMap[currentP]!['color'],
+                                              fontWeight: FontWeight.bold)
+                                          : TextStyle(
+                                              color: playerMap[e]!['color'],
+                                              fontWeight: FontWeight.bold),
+                                    ),
                                   ),
-                                  Text(
-                                    '${playerMap[e]?['score']}',
-                                    style: e == currentP
-                                        ? const TextStyle(
-                                            // color: playerMap[currentP]!['color'],
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold)
-                                        : const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold
-                                            // color: playerMap[e]!['color'],
-                                            ),
+                                  FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: Text(
+                                      '${playerMap[e]?['score']}',
+                                      style: e == currentP
+                                          ? const TextStyle(
+                                              // color: playerMap[currentP]!['color'],
+
+                                              fontWeight: FontWeight.bold)
+                                          : const TextStyle(
+                                              fontWeight: FontWeight.bold
+                                              // color: playerMap[e]!['color'],
+                                              ),
+                                    ),
                                   ),
                                 ],
                               ),
                               e == currentP
-                                  ? Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            throws < 1
-                                                ? Icon(
-                                                    CupertinoIcons.circle,
-                                                    color:
-                                                        playerMap[e]!['color'],
-                                                    size: 15.0,
-                                                    semanticLabel:
-                                                        'Text to announce in accessibility modes',
-                                                  )
-                                                : Icon(
-                                                    CupertinoIcons.circle_fill,
-                                                    color:
-                                                        playerMap[e]!['color'],
-                                                    size: 15.0,
-                                                    semanticLabel:
-                                                        'Text to announce in accessibility modes',
-                                                  ),
-                                            throws < 2
-                                                ? Icon(
-                                                    CupertinoIcons.circle,
-                                                    color:
-                                                        playerMap[e]!['color'],
-                                                    size: 15.0,
-                                                    semanticLabel:
-                                                        'Text to announce in accessibility modes',
-                                                  )
-                                                : Icon(
-                                                    CupertinoIcons.circle_fill,
-                                                    color:
-                                                        playerMap[e]!['color'],
-                                                    size: 15.0,
-                                                    semanticLabel:
-                                                        'Text to announce in accessibility modes',
-                                                  ),
-                                            throws < 3
-                                                ? Icon(
-                                                    CupertinoIcons.circle,
-                                                    color:
-                                                        playerMap[e]!['color'],
-                                                    size: 15.0,
-                                                    semanticLabel:
-                                                        'Text to announce in accessibility modes',
-                                                  )
-                                                : Icon(
-                                                    CupertinoIcons.circle_fill,
-                                                    color:
-                                                        playerMap[e]!['color'],
-                                                    size: 15.0,
-                                                    semanticLabel:
-                                                        'Text to announce in accessibility modes',
-                                                  ),
-                                          ],
-                                        )
-                                      ],
+                                  ? FittedBox(
+                                      fit: BoxFit.contain,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              throws < 1
+                                                  ? Icon(
+                                                      CupertinoIcons.circle,
+                                                      color: playerMap[e]![
+                                                          'color'],
+                                                      semanticLabel:
+                                                          'Text to announce in accessibility modes',
+                                                    )
+                                                  : Icon(
+                                                      CupertinoIcons
+                                                          .circle_fill,
+                                                      color: playerMap[e]![
+                                                          'color'],
+                                                      semanticLabel:
+                                                          'Text to announce in accessibility modes',
+                                                    ),
+                                              throws < 2
+                                                  ? Icon(
+                                                      CupertinoIcons.circle,
+                                                      color: playerMap[e]![
+                                                          'color'],
+                                                      semanticLabel:
+                                                          'Text to announce in accessibility modes',
+                                                    )
+                                                  : Icon(
+                                                      CupertinoIcons
+                                                          .circle_fill,
+                                                      color: playerMap[e]![
+                                                          'color'],
+                                                      semanticLabel:
+                                                          'Text to announce in accessibility modes',
+                                                    ),
+                                              throws < 3
+                                                  ? Icon(
+                                                      CupertinoIcons.circle,
+                                                      color: playerMap[e]![
+                                                          'color'],
+                                                      semanticLabel:
+                                                          'Text to announce in accessibility modes',
+                                                    )
+                                                  : Icon(
+                                                      CupertinoIcons
+                                                          .circle_fill,
+                                                      color: playerMap[e]![
+                                                          'color'],
+                                                      semanticLabel:
+                                                          'Text to announce in accessibility modes',
+                                                    ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     )
                                   : Text(''),
                             ],
@@ -400,14 +406,13 @@ class _InGameViewState extends State<InGameView> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(8.0)),
                         ),
-                        child: const SizedBox(
+                        child: SizedBox(
                           width: 70,
-                          height: 39,
+                          height: MediaQuery.of(context).size.height / 25,
                           child: Center(
                             child: Text('1x',
                                 style: TextStyle(
                                     // color: playerMap[currentP]!['color'],
-                                    fontSize: 20,
                                     fontWeight: FontWeight.bold)),
                           ),
                         ),
@@ -428,14 +433,14 @@ class _InGameViewState extends State<InGameView> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(8.0)),
                         ),
-                        child: const SizedBox(
+                        child: SizedBox(
                           width: 70,
-                          height: 39,
+                          height: MediaQuery.of(context).size.height / 25,
                           child: Center(
                             child: Text('2x',
                                 style: TextStyle(
                                     // color: playerMap[currentP]!['color'],
-                                    fontSize: 20,
+
                                     fontWeight: FontWeight.bold)),
                           ),
                         ),
@@ -456,14 +461,13 @@ class _InGameViewState extends State<InGameView> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(8.0)),
                         ),
-                        child: const SizedBox(
+                        child: SizedBox(
                           width: 70,
-                          height: 39,
+                          height: MediaQuery.of(context).size.height / 25,
                           child: Center(
                             child: Text('3x',
                                 style: TextStyle(
                                     // color: playerMap[currentP]!['color'],
-                                    fontSize: 20,
                                     fontWeight: FontWeight.bold)),
                           ),
                         ),
@@ -475,9 +479,10 @@ class _InGameViewState extends State<InGameView> {
                 ...points.map(
                   (e) {
                     return Container(
-                      margin: const EdgeInsets.only(
-                          top: 8, bottom: 8, left: 2, right: 2),
-                      height: 60,
+                      margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 88,
+                        bottom: MediaQuery.of(context).size.height / 88,
+                      ),
                       width: double.infinity,
                       child: SlideButton(
                           item: e,
